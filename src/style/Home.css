@@ -1,0 +1,123 @@
+.home-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  display: flex;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.home-main-panel {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-x: hidden;
+}
+
+.home-topbar {
+  height: 76px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 0 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.home-top-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.home-top-sub {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.home-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.home-status-badge.online {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.home-status-badge.offline {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.home-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.home-status-dot.online {
+  background: #22c55e;
+}
+
+.home-status-dot.offline {
+  background: #ef4444;
+}
+
+.home-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+.home-content {
+  width: 100%;
+}
+
+.home-title {
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+}
+
+.home-section-title {
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: #0f172a;
+}
+
+.home-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+  margin-bottom: 22px;
+}
+
+.home-map-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+  margin-bottom: 22px;
+  min-height: 720px;
+}
+
+.home-map-title {
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 16px;
+}

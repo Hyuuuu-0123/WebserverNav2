@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Config from "../script/config";
+import "../style/Map.css";
 
 class Map extends Component {
   constructor() {
@@ -40,23 +41,13 @@ class Map extends Component {
   }
 
   componentWillUnmount() {
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-    }
+    if (this.reconnectTimer) clearTimeout(this.reconnectTimer);
 
     this.unsubscribeTopics();
 
-    if (this.gridClient) {
-      this.gridClient.removeAllListeners();
-    }
-
-    if (this.robotPulseInterval) {
-      clearInterval(this.robotPulseInterval);
-    }
-
-    if (this.state.ros) {
-      this.state.ros.close();
-    }
+    if (this.gridClient) this.gridClient.removeAllListeners();
+    if (this.robotPulseInterval) clearInterval(this.robotPulseInterval);
+    if (this.state.ros) this.state.ros.close();
   }
 
   unsubscribeTopics = () => {
@@ -278,12 +269,9 @@ class Map extends Component {
           orientation: q,
         },
         covariance: [
-          0.25, 0, 0, 0, 0, 0,
-          0, 0.25, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0.06853891945200942,
+          0.25, 0, 0, 0, 0, 0, 0, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0.06853891945200942,
         ],
       },
     });
@@ -401,7 +389,6 @@ class Map extends Component {
     if (!this.viewer || !this.viewer.scene) return;
 
     this.viewer.scene.cursor = "crosshair";
-
     this.viewer.scene.removeAllEventListeners("click");
 
     this.viewer.scene.addEventListener("click", (event) => {
@@ -460,8 +447,6 @@ class Map extends Component {
       ros: this.state.ros,
       rootObject: this.viewer.scene,
       topic: "/map",
-      // continuous: true,
-      // compression: "cbor",
     });
 
     this.createRobotMarker();
@@ -500,83 +485,24 @@ class Map extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          background: "#f8fafc",
-          borderRadius: "18px",
-          padding: "20px",
-          border: "1px solid #e2e8f0",
-          boxShadow: "0 10px 25px rgba(15, 23, 42, 0.08)",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "14px",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "22px",
-              fontWeight: "800",
-              color: "#0f172a",
-              margin: 0,
-            }}
-          >
-            Navigation Map
-          </h3>
+      <div className="map-card">
+        <div className="map-header">
+          <h3 className="map-title">Navigation Map</h3>
 
           <span
-            style={{
-              padding: "6px 12px",
-              borderRadius: "999px",
-              fontSize: "13px",
-              fontWeight: "700",
-              color: this.state.connected ? "#166534" : "#991b1b",
-              background: this.state.connected ? "#dcfce7" : "#fee2e2",
-              border: this.state.connected
-                ? "1px solid #86efac"
-                : "1px solid #fecaca",
-            }}
+            className={`map-status ${
+              this.state.connected ? "connected" : "disconnected"
+            }`}
           >
-            {this.state.connected
-              ? "ROS Connected"
-              : "ROS Disconnected"}
+            {this.state.connected ? "ROS Connected" : "ROS Disconnected"}
           </span>
         </div>
 
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            id="nav_div"
-            style={{
-              width: "720px",
-              height: "520px",
-              background: "#ffffff",
-              borderRadius: "14px",
-              overflow: "hidden",
-              border: "2px solid #cbd5e1",
-              cursor: "crosshair",
-            }}
-          ></div>
+        <div className="map-view-wrap">
+          <div id="nav_div" className="map-view"></div>
         </div>
 
-        <div
-          style={{
-            marginTop: "10px",
-            fontSize: "14px",
-            color: "#64748b",
-            textAlign: "center",
-          }}
-        >
+        <div className="map-help-text">
           {this.state.mapLoaded
             ? "Click: send goal | Shift + Click: set initial pose | Yellow animated triangle: robot | Green: plan | Red: goal"
             : this.state.connected

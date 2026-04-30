@@ -1,0 +1,64 @@
+.map-card {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  width: 100%;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.map-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.map-status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.map-status.connected {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+.map-status.disconnected {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+.map-view-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.map-view {
+  width: 720px;
+  height: 520px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #cbd5e1;
+  cursor: crosshair;
+}
+
+.map-help-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+}
